@@ -65,7 +65,7 @@ func init() {
 	}
 }
 
-// Initialize the Machine.
+// InitFunc: Initialize the Machine.
 func InitFunc(mc *driver.MachineConfig) (driver.Machine, error) {
 	verbose = mc.Verbose
 
@@ -107,7 +107,7 @@ func (s *shareSlice) Set(shareDir string) error {
 	return nil
 }
 
-// Add cmdline params for this driver
+// ConfigFlags adds cmdline params for this driver
 func ConfigFlags(B2D *driver.MachineConfig, flags *flag.FlagSet) error {
 	//B2D.DriverCfg["virtualbox"] = cfg
 
@@ -210,7 +210,7 @@ func (m *Machine) Start() error {
 	return nil
 }
 
-// Suspend suspends the machine and saves its state to disk.
+// Save: Suspend suspends the machine and saves its state to disk.
 func (m *Machine) Save() error {
 	switch m.State {
 	case driver.Paused:
@@ -302,27 +302,27 @@ func (m *Machine) Delete() error {
 	return vbm("unregistervm", m.Name, "--delete")
 }
 
-// Get current state
+// GetName gets current state
 func (m *Machine) GetName() string {
 	return m.Name
 }
 
-// Get current state
+// GetState gets current state
 func (m *Machine) GetState() driver.MachineState {
 	return m.State
 }
 
-// Get serial file
+// GetSerialFile gets serial file
 func (m *Machine) GetSerialFile() string {
 	return m.SerialFile
 }
 
-// Get Docker port
+// GetDockerPort gets Docker port
 func (m *Machine) GetDockerPort() uint {
 	return m.DockerPort
 }
 
-// Get SSH port
+// GetSSHPort gets SSH port
 func (m *Machine) GetSSHPort() uint {
 	return m.SSHPort
 }

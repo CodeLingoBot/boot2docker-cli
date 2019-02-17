@@ -29,7 +29,7 @@ func init() {
 	}
 }
 
-// Initialize the Machine.
+// InitFunc: Initialize the Machine.
 func InitFunc(i *driver.MachineConfig) (driver.Machine, error) {
 	verbose = i.Verbose
 
@@ -37,7 +37,7 @@ func InitFunc(i *driver.MachineConfig) (driver.Machine, error) {
 	return &Machine{Name: i.VM, State: driver.Poweroff}, nil
 }
 
-// Add cmdline params for this driver
+// ConfigFlags adds cmdline params for this driver
 func ConfigFlags(B2D *driver.MachineConfig, flags *flag.FlagSet) error {
 	//B2D.DriverCfg["dummy"] = cfg
 	flags.StringVar(&cfg.DummyParam, "no-dummy", "", "Example parameter for the dummy driver.")
@@ -75,7 +75,7 @@ func (m *Machine) Start() error {
 	return nil
 }
 
-// Suspend suspends the machine and saves its state to disk.
+// Save: Suspend suspends the machine and saves its state to disk.
 func (m *Machine) Save() error {
 	m.State = driver.Saved
 	fmt.Printf("Save %s: %s\n", m.Name, m.State)
@@ -117,27 +117,27 @@ func (m *Machine) Reset() error {
 	return nil
 }
 
-// Get current name
+// GetName gets current name
 func (m *Machine) GetName() string {
 	return m.Name
 }
 
-// Get current state
+// GetState gets current state
 func (m *Machine) GetState() driver.MachineState {
 	return m.State
 }
 
-// Get serial file
+// GetSerialFile gets serial file
 func (m *Machine) GetSerialFile() string {
 	return m.SerialFile
 }
 
-// Get Docker port
+// GetDockerPort gets Docker port
 func (m *Machine) GetDockerPort() uint {
 	return m.DockerPort
 }
 
-// Get SSH port
+// GetSSHPort gets SSH port
 func (m *Machine) GetSSHPort() uint {
 	return m.SSHPort
 }

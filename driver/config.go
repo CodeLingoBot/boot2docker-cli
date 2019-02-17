@@ -59,7 +59,7 @@ func init() {
 	configs = make(map[string]ConfigFunc)
 }
 
-// optional - allows a driver to add its own commandline parameters
+// RegisterConfig: optional - allows a driver to add its own commandline parameters
 func RegisterConfig(driver string, configFunc ConfigFunc) error {
 	if _, exists := configs[driver]; exists {
 		return fmt.Errorf("Driver already registered %s", driver)

@@ -172,7 +172,7 @@ func cmdInteractive(m driver.Machine, args ...string) error {
 	return cmd.Run()
 }
 
-//swiped from dotcloud/docker/utils/utils.go
+// CopyFile: swiped from dotcloud/docker/utils/utils.go
 func CopyFile(src, dst string) (int64, error) {
 	if src == dst {
 		return 0, nil
@@ -275,7 +275,7 @@ func RequestSocketFromSSH(m driver.Machine) (string, error) {
 	return lines[0], nil
 }
 
-// use the serial port socket to ask what the VM's host only IP is
+// RequestIPFromSerialPort: use the serial port socket to ask what the VM's host only IP is
 func RequestIPFromSerialPort(socket string) (string, error) {
 	c, err := net.Dial("unix", socket)
 
